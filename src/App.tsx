@@ -25,6 +25,7 @@ const App = () => {
     if (!query.length) return;
 
     const fetchImages = async () => {
+      setIsLoading(true);
       try {
         const data = await requestImages(query, page);
         setImages((prevImages) => [...prevImages, ...data.results]);
@@ -34,6 +35,8 @@ const App = () => {
         setIsLoading(false);
       }
     };
+    setImages([]);
+    setPage(1);
     fetchImages();
   }, [query, page]);
 

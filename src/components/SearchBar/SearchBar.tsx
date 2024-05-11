@@ -41,6 +41,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
                 autoComplete="off"
                 autoFocus
                 placeholder="Search images and photos"
+                value={searchQuery}
+                onChange={handleInputChange}
               />
             </div>
           </form>
