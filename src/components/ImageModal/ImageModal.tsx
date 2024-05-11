@@ -1,6 +1,7 @@
 import Modal from "react-modal";
+import { Images } from "../types";
 
-const customStyles = {
+const customStyles: Modal.Styles = {
   content: {
     top: "50%",
     left: "50%",
@@ -10,8 +11,16 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-
-const ImageModal = ({ modalImg, isOpen, onCloseModal }) => {
+interface ImageModalProps {
+  onCloseModal: () => void;
+  isOpen: boolean;
+  modalImg: Images | null;
+}
+const ImageModal: React.FC<ImageModalProps> = ({
+  modalImg,
+  isOpen,
+  onCloseModal,
+}) => {
   return (
     <div>
       <Modal
@@ -22,8 +31,8 @@ const ImageModal = ({ modalImg, isOpen, onCloseModal }) => {
       >
         {modalImg && (
           <img
-            src={modalImg.imgUrl}
-            alt="Selected Image"
+            src={modalImg.urls.regular}
+            alt={modalImg.alt_description}
             width={800}
             height={600}
           />

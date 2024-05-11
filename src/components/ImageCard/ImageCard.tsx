@@ -1,16 +1,22 @@
+import { FC } from "react";
+import { Images, User } from "../types";
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ id, urls, alt_description, user, openModal }) => {
+interface ImageCardProps {
+  image: Images;
+  openModal: (id: string) => void;
+  user: User;
+}
+
+const ImageCard: FC<ImageCardProps> = ({ image, openModal, user }) => {
   return (
-    <li key={id} className={css.listItem}>
+    <li className={css.listItem}>
       <div className={css.imgItem}>
         <img
-          onClick={() =>
-            openModal({ imgUrl: urls.regular, description: alt_description })
-          }
-          src={urls.small}
+          onClick={() => openModal(image.id)}
+          src={image.urls.small}
           width={300}
-          alt={alt_description}
+          alt={image.alt_description}
         />
       </div>
       <div className={css.imageInfo}>
